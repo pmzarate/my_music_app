@@ -1,6 +1,6 @@
 import React from 'react';
-// import logo from './logo.svg';
 import './App.css';
+import Dashboard from '../src/components/Dashboard';
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
         <p>
         THIS IS OUR MUSIC APP--- BITCHES!!!!
         </p>
+      
       </header>
     </div>
   );
