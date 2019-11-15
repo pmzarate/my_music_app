@@ -9,7 +9,7 @@ function App() {
         <p>
         THIS IS OUR MUSIC APP--- BITCHES!!!!
         </p>
-      
+        <Dashboard/>
       </header>
     </div>
   );
