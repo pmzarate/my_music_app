@@ -1,101 +1,82 @@
-import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
+import React, { Component } from "react";
+//t { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import InputBase from '@material-ui/core/InputBase'
-
-constructor(props) {
-      super(props);
-        this.state = {
-        }
-    }
+import MenuItem from '@material-ui/core/MenuItem';
 
 
-const BootstrapInput = withStyles(theme => ({
-  root: {
-    'label + &': {
-      marginTop: theme.spacing(3),
-    },
-  },
-  input: {
-    borderRadius: 4,
-    position: 'relative',
-    backgroundColor: theme.palette.background.paper,
-    border: '1px solid #ced4da',
-    fontSize: 16,
-    padding: '10px 26px 10px 12px',
-    transition: theme.transitions.create(['border-color', 'box-shadow']),
-    // Use the system font instead of the default Roboto font.
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:focus': {
-      borderRadius: 4,
-      borderColor: '#80bdff',
-      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-    },
-  },
-}))(InputBase);
-
-const useStyles = makeStyles(theme => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-}));
-
-function SoundSelect() {
-  const classes = useStyles();
-  const [quality, setQuality] = React.useState('');
-  const handleChange = event => {
-    setAge(event.target.value);
+class SimpleSelect extends Component {
+     state = {
+      values: '',
+      notifications: []
   };
-  return (
-    <div>
-      <FormControl className={classes.margin}>
-        <InputLabel htmlFor="demo-customized-textbox">Sound Quality</InputLabel>
-        <BootstrapInput id="demo-customized-textbox" />
-      </FormControl>
-      <FormControl className={classes.margin}>
-        <InputLabel id="demo-customized-select-label">Sound Quality</InputLabel>
-        <Select
-          labelId="demo-customized-select-label"
-          id="demo-customized-select"
-          value={quality}
-          onChange={handleChange}
-          input={<BootstrapInput />}
-        >
-          <MenuItem value={lo}>Low</MenuItem>
-          <MenuItem value={mid}>Mid</MenuItem>
-          <MenuItem value={hi}>High</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl className={classes.margin}>
-        <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
-        <NativeSelect
-          id="demo-customized-select-native"
-          value={quality}
-          onChange={handleChange}
-          input={<BootstrapInput />}
-        >
-          <option value={lo}>Ten</option>
-          <option value={mid}>Twenty</option>
-          <option value={hi}>Thirty</option>
-        </NativeSelect>
-      </FormControl>
-    </div>
-  );
-}
 
-export default SoundSelect
+// const useStyles = makeStyles(theme => ({
+//   formControl: {
+//     margin: theme.spacing(1),
+//     minWidth: 120,
+//   },
+//   selectEmpty: {
+//     marginTop: theme.spacing(2),
+//   },
+// }));
+
+//  SimpleSelect() {
+//   const classes = useStyles();
+//   const [quality, setquality] = React.useState('');
+
+  handleSound = event => {
+    if(event.target.value === 10){
+      this.state.notifications.push("Music quality is degraded. Increase quality if your connection allows it."
+      );
+    }else{
+    }
+  this.setState({ values: event.target.value });
+};
+
+render() {
+      return (
+        <div>
+            <Card className="Sound-quality">
+            <CardContent>
+              <Typography variant="h5" component="h2">
+                Sound Quality
+              </Typography>
+
+              <Typography variant="body2" component="p">
+                Manually control the music quality in event of poor connection
+              
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Select
+                value={this.state.values}
+                onChange={this.handleSound}
+                displayEmpty
+                name="age"
+                className="inputSound"
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Low</MenuItem>
+                <MenuItem value={20}>Normal</MenuItem>
+                <MenuItem value={30}>High</MenuItem>
+              </Select>
+            </CardActions>
+          </Card>
+      
+        <div className="notifications">
+          <h1>System Notifications:</h1>
+          {this.state.notifications.map(notification => {
+            return <p>{notification}</p>;
+          })}
+        </div>
+        </div>
+      )
+}
+}
+export default SimpleSelect;
