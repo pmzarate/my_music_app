@@ -6,7 +6,7 @@ import {
   Button,
   TextField
 } from "@material-ui/core";
-// import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import "./App.css";
 import Dashboard from "./DashBoard";
 
@@ -63,4 +63,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default MyComponent;

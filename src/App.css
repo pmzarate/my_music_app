@@ -7,16 +7,83 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  /* background-color: #282c34;
+  min-height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* font-size: calc(10px + 2vmin); */
+  /* color: white; */
 }
 
 .App-link {
   color: #09d3ac;
+}
+
+.loginContainer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 70px;
+  margin-top: 100px;
+}
+button {
+  color: white !important;
+  background-color: #3f51b5 !important;
+}
+button:hover {
+  background-color: #3f51b5 !important;
+}
+.welcome {
+  margin-left: 130px;
+  color: gray;
+}
+.MuiPaper-height {
+  height: 300px;
+}
+
+.card1 {
+  min-width: 275px;
+  height: 200px;
+  margin-top: 51px;
+  background-image: url();
+  
+}
+.card2 {
+  min-width: 275px;
+  height: 200px;
+  margin-top: 51px;
+  background-image: url();
+  
+}
+.card3 {
+  min-width: 275px;
+  height: 200px;
+  margin-top: 51px;
+  background-image: url();
+  
+}
+.title {
+  font-size: 14;
+}
+.menssage{
+  margin-left: 114px;
+  width: 100px;
+}
+.menssage{
+  color:black;
+}
+.systemOf{
+  margin-left: 114px;
+}
+
+.volume{
+  margin-left: 514px;
+  width: 275px;
+}
+.quality{
+  margin-left: 900px;
+  
 }
