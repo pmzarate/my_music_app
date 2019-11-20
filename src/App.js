@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import React, { Component } from "react";
 import {
   AppBar,
@@ -62,23 +62,6 @@ class Login extends Component {
       </div>
     );
   }
-=======
-import React from 'react';
-import './App.css';
-import Dashboard from '../src/components/Dashboard';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-musicHeader">
-        <p>
-        THIS IS OUR MUSIC APP--- BITCHES!!!!
-        </p>
-        <Dashboard/>
-      </header>
-    </div>
-  );
->>>>>>> a12ae76795d7a981f7d64c68941113ebb701c79d
 }
 
 export default Login;
