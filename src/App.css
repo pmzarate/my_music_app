@@ -69,21 +69,26 @@ button:hover {
   font-size: 14;
 }
 .menssage{
-  margin-left: 114px;
-  width: 100px;
+  margin-left: 550px;
+  
+
 }
 .menssage{
   color:black;
 }
 .systemOf{
-  margin-left: 114px;
+  margin-left: 550px;
 }
 
 .volume{
-  margin-left: 514px;
+  margin-left: 550px;
   width: 275px;
 }
 .quality{
-  margin-left: 900px;
+  margin-left: 550px;
   
+}
+.frases{
+  margin-left: 470px;
+  margin-top: 40px;
 }

@@ -42,11 +42,11 @@ class Dashboard extends Component {
     this.setState({ ...this.state, [name]: event.target.checked });
     console.log(this.state.checkedA);
     if (this.state.checkedA) {
-      this.setState({ messages: [...this.state.messages, "system of"] });
+      this.setState({ messages: [...this.state.messages, <h3>"system of"</h3>] });
       this.setState({ systemOff: [] });
     } else {
       this.setState({ messages: [] });
-      this.setState({ systemOff: [...this.state.systemOff, "system on"] });
+      this.setState({ systemOff: [...this.state.systemOff, <h3>"system on"</h3>] });
     }
   };
   valueText = value => {
@@ -189,7 +189,7 @@ class Dashboard extends Component {
             </CardContent>
           </Card>
         </Grid>
-
+        <div className="frases"><h1>display cards info here</h1></div>
         {this.state.messages.map(message => {
           return <div className="menssage">{message}</div>;
         })}
