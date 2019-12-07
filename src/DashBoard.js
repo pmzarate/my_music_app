@@ -35,57 +35,80 @@ class Dashboard extends Component {
       systemOff: [],
       volume: [],
       qualityMessages: [],
-      quality: 10
+      quality: 20
     };
   }
   handleSwitched = name => event => {
+    console.log(event)
     this.setState({ ...this.state, [name]: event.target.checked });
-    console.log(this.state.checkedA);
-    if (this.state.checkedA) {
-      this.setState({ messages: [...this.state.messages, <h3>"system of"</h3>] });
-      this.setState({ systemOff: [] });
+    if (event.target.checked) {
+      let newMessages = this.state.messages
+      let index = newMessages.findIndex(
+        function(message){
+          return message === "application is offline. You won't be able to share or stream music to other devices."
+        }
+      )
+      newMessages.splice(index,1)
+      this.setState({ messages:newMessages});
     } else {
-      this.setState({ messages: [] });
-      this.setState({ systemOff: [...this.state.systemOff, <h3>"system on"</h3>] });
+      let newMessages = this.state.messages.concat(["application is offline. You won't be able to share or stream music to other devices."])
+    
+      this.setState({ messages:newMessages});
     }
+    
   };
   valueText = value => {
-    let index = this.state.volume.indexOf(
+    let index = this.state.messages.indexOf(
       "Too Loud volume can cause harm to your hearing"
     );
-    console.log("value", value, index, this.state.volume);
+    // debugger;
+   
     if (value >= 80 && index === -1) {
-      this.state.volume.push("Too Loud volume can cause harm to your hearing");
-      this.setState({ ...this.state });
-    } else if (value < 80 && index !== -1) {
-      this.state.volume.pop();
-      this.setState({ ...this.state });
-    }
+      let newMessages = this.state.messages.concat(["Too Loud volume can cause harm to your hearing"])
+    
+      this.setState({ messages:newMessages});
+
+      // debugger;
+    }else if(value< 80){    
+      let newMessages = this.state.messages
+      let index = newMessages.findIndex(
+        function(message){
+          return message ==="Too Loud volume can cause harm to your hearing"
+        }
+      )
+      newMessages.splice(index,1)
+      if(index !== -1){
+        this.setState({ messages:newMessages});
+
+      }
+
+    } 
+    // debugger;
     return value;
   };
   handleChange = event => {
     let index = this.state.qualityMessages.indexOf("quality bad");
-    console.log(index, event.target.value);
+    this.setState({quality: event.target.value})
     if (event.target.value === 10 && index === -1) {
-      this.state.qualityMessages.pop();
-      this.state.qualityMessages.push(
-        "quality start low here and not good if you have hearing problems"
-      );
-      this.setState({ ...this.state });
-    } else if (event.target.value === 20 && index === -1) {
-      this.state.qualityMessages.pop();
-      this.state.qualityMessages.push(
-        "quality start mediun here and its great quality of sound"
-      );
-      this.setState({ ...this.state });
-    } else if (event.target.value === 30 && index === -1) {
-      this.state.qualityMessages.pop();
-      this.state.qualityMessages.push(
-        "quality start high here Too Loud volume can cause harm to your hearing"
-      );
-      this.setState({ ...this.state });
+    let newMessages = this.state.messages.concat(["quality start low here and not good if you have hearing problems"])
+    
+      this.setState({ messages:newMessages});
+    } else{   let newMessages = this.state.messages
+      let index = newMessages.findIndex(
+        function(message){
+          return message ==="Too Loud volume can cause harm to your hearing"
+        }
+      )
+      newMessages.splice(index,1)
+      if(index !== 10){
+        this.setState({ messages:newMessages});
+
+      }
+
     }
-  };
+
+    }
+  
   render() {
     console.log(this.state);
     return (
@@ -118,7 +141,7 @@ class Dashboard extends Component {
             </CardContent>
             <CardActions>
               <Switch
-                checked={this.state.checkedA}
+                checked={this.state.checked}
                 onChange={this.handleSwitched("checkedA")}
                 value="checkedA"
                 inputProps={{ "aria-label": "secondary checkbox" }}
@@ -194,16 +217,6 @@ class Dashboard extends Component {
           return <div className="menssage">{message}</div>;
         })}
 
-        {this.state.systemOff.map(system => {
-          return <div className="systemOf">{system}</div>;
-        })}
-        {this.state.volume.map(vol => {
-          return <div className="volume">{vol}</div>;
-        })}
-        {this.state.qualityMessages.map(volume => {
-          console.log("MESSAGE", volume);
-          return <div className="quality">{volume}</div>;
-        })}
       </div>
     );
   }
